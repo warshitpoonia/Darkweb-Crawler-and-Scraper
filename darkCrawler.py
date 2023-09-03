@@ -24,10 +24,6 @@ except ImportError:
 # Define the starting .onion URL as a command-line argument
 START = sys.argv[1]
 
-# Set up a deque for URL queue
-urlq = scrapy.Queue()
-urlq.put(START)
-
 # Set to keep track of visited URLs
 visited = set()
 
@@ -79,8 +75,7 @@ with process.launch_tor_with_config(
                 links = [urljoin(url, href) for href in soup.find_all('a', href=True)]
                 for link in links:
                     if link not in visited:
-                        urlq.put(link)
-                        visited.add(link)
+                        yield response.follow(link, callback=self.parse)
 
             except Exception as e:
                 print(f"Error parsing page: {e}")

@@ -96,23 +96,32 @@ This code is designed to scrape email addresses from web pages of .onion domains
 # Crawler 
 This code is a web crawler that utilizes Tor for anonymous web browsing. It crawls websites starting from a specified .onion URL, extracts page titles, and stores URL and title data in an SQLite database. Here's a breakdown of the code:
 
-<strong>Importing Libraries:</strong> The script imports various libraries required for different tasks, including sys, sqlite3, stem (for controlling Tor), requests_socks (for making requests over Tor), BeautifulSoup (for parsing HTML), and scrapy (for web crawling).
+<strong>Importing Libraries:</strong> 
+The script imports various libraries required for different tasks, including sys, sqlite3, stem (for controlling Tor), requests_socks (for making requests over Tor), BeautifulSoup (for parsing HTML), and scrapy (for web crawling).
 
-Function to Renew Tor Identity: The renew_tor_identity function is defined to renew the Tor identity, which essentially gets a new IP address from the Tor network.
+<strong>Function to Renew Tor Identity:</strong> 
+The renew_tor_identity function is defined to renew the Tor identity, which essentially gets a new IP address from the Tor network.
 
-Disabling SSL Warnings: It attempts to disable SSL warnings using requests.packages.urllib3 to suppress warnings related to SSL certificate verification.
+<strong>Disabling SSL Warnings:</strong> 
+It attempts to disable SSL warnings using requests.packages.urllib3 to suppress warnings related to SSL certificate verification.
 
-Command-Line Argument: It expects the starting .onion URL as a command-line argument and assigns it to the START variable.
+<strong>Command-Line Argument:</strong> 
+It expects the starting .onion URL as a command-line argument and assigns it to the START variable.
 
-Setting Up Data Structures: It initializes data structures like urlq (a queue for URLs to visit), visited (a set to keep track of visited URLs), and establishes a connection to an SQLite database to store crawled data.
+<strong>Setting Up Data Structures:</strong> 
+It initializes data structures like urlq (a queue for URLs to visit), visited (a set to keep track of visited URLs), and establishes a connection to an SQLite database to store crawled data.
 
-Creating the SQLite Database Table: A table named pages is created in the SQLite database to store crawled data. The table has columns for id, url, and title.
+<strong>Creating the SQLite Database Table:</strong> 
+A table named pages is created in the SQLite database to store crawled data. The table has columns for id, url, and title.
 
-Starting the Tor Process: It launches the Tor process using stem and specifies configuration parameters for the SocksPort, ControlPort, and DataDirectory. It also renews the Tor identity to obtain a new IP address.
+<strong>Starting the Tor Process:</strong> 
+It launches the Tor process using stem and specifies configuration parameters for the SocksPort, ControlPort, and DataDirectory. It also renews the Tor identity to obtain a new IP address.
 
-Defining a Scrapy Spider: It defines a Scrapy spider named MySpider. The start_urls attribute is set to begin crawling from the provided .onion URL.
+<strong>Defining a Scrapy Spider:</strong> 
+It defines a Scrapy spider named MySpider. The start_urls attribute is set to begin crawling from the provided .onion URL.
 
-Parsing Web Pages with BeautifulSoup: In the parse method of the Scrapy spider:
+<strong>Parsing Web Pages with BeautifulSoup:</strong> 
+        <strong> In the parse method of the Scrapy spider:</strong> 
 
 The URL is extracted, and it's marked as visited.
 The HTML content of the page is parsed using BeautifulSoup, and the page title is extracted.
@@ -120,6 +129,8 @@ The page title and URL are stored in the SQLite database, avoiding duplicate URL
 Links are extracted from the page and added to the urlq queue if they haven't been visited before.
 Crawling with Scrapy: It sets up a Scrapy CrawlerProcess and starts crawling using the MySpider defined earlier. The process runs asynchronously to crawl the specified URLs.
 
-Closing Database and Stopping Tor: After the crawling process is complete, the SQLite database connection is closed, and the Tor process is terminated.
+<strong>Closing Database and Stopping Tor:</strong>
+After the crawling process is complete, the SQLite database connection is closed, and the Tor process is terminated.
 
-Completion Message: Finally, it prints a "Crawling completed" message to indicate the end of the crawling process.
+<strong>Completion Message:</strong>  
+Finally, it prints a "Crawling completed" message to indicate the end of the crawling process.

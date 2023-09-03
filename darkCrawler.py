@@ -5,6 +5,7 @@ from urllib.parse import urljoin, urlparse
 import collections
 import sys
 import re
+import sqlite3
 
 # Disable SSL warnings
 try:
@@ -23,6 +24,20 @@ urlq.append(START)
 # Set to keep track of visited URLs
 visited = set()
 
+# Initialize the SQLite database
+conn = sqlite3.connect('crawler_database.db')
+cursor = conn.cursor()
+
+# Create a table to store crawled data
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS pages (
+        id INTEGER PRIMARY KEY,
+        url TEXT UNIQUE,
+        title TEXT
+    )
+''')
+conn.commit()
+
 while urlq:
     url = urlq.popleft()
 
@@ -39,6 +54,10 @@ while urlq:
         page_title = body.xpath('//title/text()')
         print(f"Title: {page_title}")
 
+        # Store the visited URL and page title in the database
+        cursor.execute('INSERT OR IGNORE INTO pages (url, title) VALUES (?, ?)', (url, page_title))
+        conn.commit()
+
         # Extract links from the page and add them to the queue
         links = body.xpath('//a/@href')
         for link in links:
@@ -49,5 +68,8 @@ while urlq:
 
     except Exception as e:
         print(f"Error parsing page: {e}")
+
+# Close the database connection
+conn.close()
 
 print("Crawling completed.")

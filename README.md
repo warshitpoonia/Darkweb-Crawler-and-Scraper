@@ -96,7 +96,7 @@ This code is designed to scrape email addresses from web pages of .onion domains
 # Crawler 
 This code is a web crawler that utilizes Tor for anonymous web browsing. It crawls websites starting from a specified .onion URL, extracts page titles, and stores URL and title data in an SQLite database. Here's a breakdown of the code:
 
-<B1>Importing Libraries:</B1> The script imports various libraries required for different tasks, including sys, sqlite3, stem (for controlling Tor), requests_socks (for making requests over Tor), BeautifulSoup (for parsing HTML), and scrapy (for web crawling).
+<strong>Importing Libraries:</strong> The script imports various libraries required for different tasks, including sys, sqlite3, stem (for controlling Tor), requests_socks (for making requests over Tor), BeautifulSoup (for parsing HTML), and scrapy (for web crawling).
 
 Function to Renew Tor Identity: The renew_tor_identity function is defined to renew the Tor identity, which essentially gets a new IP address from the Tor network.
 

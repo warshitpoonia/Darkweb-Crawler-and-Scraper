@@ -5,13 +5,13 @@
 Python-based Darkweb-Crawler-and-Scraper for beginners (basic modification on Scraper makes it a crawler)
 
 Importing Libraries:
-Code:-
-<be> import requests <br/>
-from lxml import html
-from urllib.parse import urljoin, urlparse
-import collections
-import sys
-import re
+Code:-<br/>
+<br> import requests <br/>
+<br> from lxml import html <br/>
+<br> from urllib.parse import urljoin, urlparse <br/>
+<br> import collections <br/>
+<br> import sys <br/>
+<br> import re <br/>
 
 The code starts by importing necessary Python libraries. These libraries will be used for making HTTP requests, parsing HTML, working with URLs, managing a deque (double-ended queue), processing command-line arguments, and using regular expressions.
 

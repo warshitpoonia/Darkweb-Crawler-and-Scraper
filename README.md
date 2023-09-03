@@ -17,11 +17,11 @@ The code starts by importing necessary Python libraries. These libraries will be
 
 Disabling SSL Warnings (Optional):
 Code:-
-try:
+<pre>try:
     import requests.packages.urllib3
     requests.packages.urllib3.disable_warnings()
 except ImportError:
-    pass
+    pass</pre>
     
 This section tries to disable SSL warnings using requests to suppress warnings related to SSL certificate verification. It is optional but can be helpful when dealing with .onion domains that often have self-signed certificates.
 

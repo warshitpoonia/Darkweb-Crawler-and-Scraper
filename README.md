@@ -2,5 +2,5 @@
 # DarkWeb  Scraper
 
 
-Python-based darkweb Scraper for Biggners
+Python-based darkweb Scraper for beginners
 

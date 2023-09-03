@@ -6,7 +6,7 @@ Python-based Darkweb-Crawler-and-Scraper for beginners (basic modification on Sc
 
 Importing Libraries:
 Code:-
-import requests;
+<be> import requests <br/>
 from lxml import html
 from urllib.parse import urljoin, urlparse
 import collections
@@ -82,23 +82,23 @@ Filtering Links:
 Code:-
 base_url = urlparse(url)
 links = {urljoin(url, href) for href in body.xpath('//a/@href')}
-links = {link for link in links if urlparse(link).netloc == base_url.netloc}
+     links = {link for link in links if urlparse(link).netloc == base_url.netloc}
 
 The script extracts all links (URLs) from the web page's HTML content and filters them to ensure they belong to the same domain as the current page.
 
 Handling New URLs:
 Code:-
-new_links = [link for link in links if link not in visited]
-urlq.extend(new_links)
-visited.update(new_links)
+      new_links = [link for link in links if link not in visited]
+      urlq.extend(new_links)
+      visited.update(new_links)
 
 It filters out links that have not been visited yet and adds them to the queue (urlq) for future processing. Visited URLs are also tracked to prevent revisiting.
 
 Writing Extracted Email Addresses to a File:
 Code:-
-with open('extracted_emails.txt', 'w') as email_file:
-    for email in extracted_emails:
-        email_file.write(email + '\n')
+     with open('extracted_emails.txt', 'w') as email_file:
+       for email in extracted_emails:
+            email_file.write(email + '\n')
 
 Finally, the script writes the extracted email addresses to a text file named 'extracted_emails.txt'.
 This code is designed to scrape email addresses from web pages of .onion domains, while also handling URLs within the same domain and keeping track of visited URLs. It provides better organization and error handling compared to the initial script.

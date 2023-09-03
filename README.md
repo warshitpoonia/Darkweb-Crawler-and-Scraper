@@ -6,7 +6,7 @@ Python-based Darkweb-Crawler-and-Scraper for beginners (basic modification on Sc
 
 Importing Libraries:
 Code:-
-import requests/n
+import requests;
 from lxml import html
 from urllib.parse import urljoin, urlparse
 import collections
